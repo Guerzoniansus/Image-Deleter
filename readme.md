@@ -1,5 +1,9 @@
 ![](https://i.imgur.com/5WkupRB.png)
 
+# Download
+
+https://github.com/Guerzoniansus/Image-Deleter/releases/tag/release
+
 # How to run
 
 1. Put both the .exe and the html in your image folder.

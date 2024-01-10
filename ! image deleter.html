@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #content {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #left-side {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #imageContainer {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        img {
+            max-height: 45vh;
+            max-width: 45vw;
+        }
+
+        img:hover {
+            transform: scale(1.01);
+            cursor: pointer;
+        }
+
+        button {
+            font-size: 36px;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <div id="left-side">
+        <button onclick="getImages(BACKEND_URL, IMAGE_CONTAINER)">Skip</button>
+    </div>
+
+    <div id="imageContainer"></div>
+</div>
+
+<script>
+    const BACKEND_URL = "http://localhost:3030/images";
+    const DELETE_URL = (path) => BACKEND_URL + "?path=" + encodeURIComponent(path);
+    const IMAGE_CONTAINER = document.getElementById('imageContainer');
+
+    getImages(BACKEND_URL, IMAGE_CONTAINER);
+
+    function getImages(url, imageContainer) {
+        clearImages(imageContainer);
+
+        fetch(url)
+            .then(response => response.json())
+            .then(paths => {
+
+                paths.forEach(path => {
+                    const img = document.createElement('img');
+                    img.src = path;
+                    img.title = path;
+                    img.onclick = () => deleteImage(path);
+
+                    imageContainer.appendChild(img);
+                });
+            });
+    }
+
+    function deleteImage(path) {
+        console.log("Deleting: " + path);
+        fetch(DELETE_URL(path), { method: 'DELETE' }).then(() => getImages(BACKEND_URL, IMAGE_CONTAINER));
+    }
+
+    function clearImages(imageContainer) {
+        while (imageContainer.firstChild) {
+            imageContainer.removeChild(imageContainer.firstChild);
+        }
+    }
+</script>
+</body>
+</html>

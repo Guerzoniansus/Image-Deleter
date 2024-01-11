@@ -2,7 +2,7 @@
 
 # Download
 
-https://github.com/Guerzoniansus/Image-Deleter/releases/tag/release
+[https://github.com/Guerzoniansus/Image-Deleter/releases/tag/release](https://github.com/Guerzoniansus/Image-Deleter/releases/tag/v1.0)
 
 # How to run
 

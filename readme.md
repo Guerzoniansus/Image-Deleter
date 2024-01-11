@@ -1,16 +1,12 @@
 ![](https://i.imgur.com/5WkupRB.png)
 
-# Download
-
-[https://github.com/Guerzoniansus/Image-Deleter/releases/tag/release](https://github.com/Guerzoniansus/Image-Deleter/releases/tag/v1.0)
-
 # How to run
 
 1. Extract the .exe and the HTML from the downloaded rar file into your image folder.
 2. Run the .exe file and keep it open.
 3. Open the HTML file in an internet browser.
 
-You can see a list of deleted images in the console (F12).
+You can see a list of deleted images in the console (F12), but images are **deleted permanently, they do NOT go to the trash can!** I tried to add trash can support but I couldn't so I gave up.
 
 Supports jpg, jpeg and png.
 

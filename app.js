@@ -1,15 +1,13 @@
-import trash from 'trash';
-import express from 'express';
-import fs from 'fs';
-import path from 'path';
-import cors from 'cors';
-
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const app = express();
-app.use(cors());
+const cors = require('cors')
+app.use(cors())
+
+const folder = "./";
 
 app.get('/images', (request, response) => {
-    const folder = "./"
-
     // Check if the directory exists
     if (!fs.existsSync(folder)) {
         return response.status(400).send({ errorMsg: 'Directory does not exist.' });
@@ -42,10 +40,13 @@ app.delete('/images', (request, response) => {
     }
 
     // Delete the image
-    trash(imagePath).then(() => response.send({ success: true }));
+    fs.unlinkSync(imagePath);
+
+    response.send({ success: true });
 });
 
 
 app.listen(3030, () => {
-    console.log('Server started on port 3030');
+    console.log('Server started on port 3030.');
+    console.log('Keep this window open until you are done with deleting images.');
 });

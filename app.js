@@ -1,10 +1,11 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const app = express();
-const cors = require('cors')
+import trash from 'trash';
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import cors from 'cors';
 
-app.use(cors())
+const app = express();
+app.use(cors());
 
 app.get('/images', (request, response) => {
     const folder = "./"
@@ -15,7 +16,7 @@ app.get('/images', (request, response) => {
     }
 
     // Read files from the directory
-    const files = fs.readdirSync("./");
+    const files = fs.readdirSync(folder);
 
     // Filter out only image files
     const images = files.filter(file => ['.jpg', '.jpeg', '.png'].includes(path.extname(file)));
@@ -33,17 +34,15 @@ app.get('/images', (request, response) => {
 });
 
 app.delete('/images', (request, response) => {
-    const path = request.query.path;
+    const imagePath = request.query.path;
 
     // Check if the image exists
-    if (!fs.existsSync(path)) {
+    if (!fs.existsSync(imagePath)) {
         return response.status(400).send({ errorMsg: 'Image does not exist.' });
     }
 
     // Delete the image
-    fs.unlinkSync(path);
-
-    response.send({ success: true });
+    trash(imagePath).then(() => response.send({ success: true }));
 });
 
 

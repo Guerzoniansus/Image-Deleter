@@ -1,8 +1,12 @@
 ![](https://i.imgur.com/5WkupRB.png)
 
+# Download
+
+https://github.com/Guerzoniansus/Image-Deleter/releases/tag/release
+
 # How to run
 
-1. Put both the .exe and the html in your image folder.
+1. Extract the .exe and the HTML from the downloaded rar file into your image folder.
 2. Run the .exe file and keep it open.
 3. Open the HTML file in an internet browser.
 
